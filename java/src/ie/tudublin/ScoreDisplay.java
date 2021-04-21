@@ -1,17 +1,18 @@
 package ie.tudublin;
 
 import java.util.ArrayList;
-
+import java.util.Hashtable;
 
 import processing.core.PApplet;
 
 public class ScoreDisplay extends PApplet
 {
 	ArrayList<Note> notes = new ArrayList<Note>();
+	String allNotes = "DEFGABcd";
 
-	String score = "DEFGABcd";
+	// String score = "DEFGABcd";
 	// String score = "D2E2F2G2A2B2c2d2";
-	// String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
+	String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 
 	public void loadScore() {
 		for(int i = 0; i < score.length(); i++) {
@@ -84,24 +85,23 @@ public class ScoreDisplay extends PApplet
 		float border = width * 0.1f;
 		int i = 0;
 		for(Note n : notes) {
-
 			// write the letter
+			char character = n.getNote();
 			float x = map(i, 0, notes.size(), border+10, width-border);
-			float y = map (i, 0, notes.size(), height/2 + 50, height/2 - 50 );
 			text(n.getNote(), x, height/2 - 120);
+			
+			// equally spaced
+			int pos = allNotes.indexOf(character);
+			float gap = (float)12.5 * pos;
 
-			if(n.getDuration() == 1) {
-			//draw circle for each note
+			// draw the circles
 			noStroke();
-			circle(x, y, 20);
+			circle(x, (height/2+45) - gap, 20);
 			stroke(0);
-			line(x+5, y, x+5, y-50);
-			line(x+5, y-50, x+15, y-40);
+
 			i++;
-			}
-
+			
 		}
-
-
 	}
+
 }

@@ -1,5 +1,7 @@
 package ie.tudublin;
 
+import processing.core.PApplet;
+
 public class Note {
     private char note;
     private int duration;
@@ -9,6 +11,8 @@ public class Note {
         this.note = note;
         this.duration = duration;
     }
+
+    
 
     @Override
     public String toString() {
