@@ -86,16 +86,20 @@ public class ScoreDisplay extends PApplet
 		for(Note n : notes) {
 
 			// write the letter
-			float x = map(i, 0, score.length(), border+10, width-border);
-			float y = map (i, 0, 6, height/2 + 50, height/2 - 50  );
-			text(n.getNote(), x, height/2 - 90);
+			float x = map(i, 0, notes.size(), border+10, width-border);
+			float y = map (i, 0, notes.size(), height/2 + 50, height/2 - 50 );
+			text(n.getNote(), x, height/2 - 120);
 
-
+			if(n.getDuration() == 1) {
 			//draw circle for each note
 			noStroke();
-			circle(x, y, 10);
-
+			circle(x, y, 20);
+			stroke(0);
+			line(x+5, y, x+5, y-50);
+			line(x+5, y-50, x+15, y-40);
 			i++;
+			}
+
 		}
 
 
