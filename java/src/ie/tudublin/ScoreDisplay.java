@@ -56,7 +56,6 @@ public class ScoreDisplay extends PApplet
 		colorMode(HSB);
 		loadScore();
 		printScores();
-
 	}
 
 	public void draw()
@@ -64,6 +63,7 @@ public class ScoreDisplay extends PApplet
 		background(255);
 		drawLines();	
 		drawNotes();	
+
 
 	}
 
@@ -79,26 +79,34 @@ public class ScoreDisplay extends PApplet
 
 	void drawNotes()
 	{
-		fill(0);
 		textAlign(CENTER, CENTER);
+
 		textSize(16);
 		float border = width * 0.1f;
 		int i = 0;
+		int size= 20;
 		for(Note n : notes) {
-			// write the letter
+
+			
 			char character = n.getNote();
 			float x = map(i, 0, notes.size(), border+10, width-border);
+
+			// checking if mouse if hovering on the same x axis as a note
+			if(mouseX <= x + size && mouseX >= x - size) {
+				fill(255, 255, 255);
+				stroke(255, 255, 255);
+			} else {
+				fill(0);
+				stroke(0);
+			}
 			text(n.getNote(), x, height/2 - 120);
-			
+
 			// equally spaced
 			int pos = allNotes.indexOf(character);
 			float gap = (float)12.3 * pos;
 
 			// draw the circles
-			noStroke();
-			circle(x, (height/2+45) - gap, 20);
-			stroke(0);
-
+			circle(x, (height/2+45) - gap, size);
 			
 			line(x+5, (height/2+45) - gap, x+5,((height/2+45) - gap) - 50);
 
@@ -106,11 +114,13 @@ public class ScoreDisplay extends PApplet
 			if(n.getDuration() == 1) {
 				line( x+5, ((height/2+45) - gap) - 50, x+15, ((height/2+45) - gap) -40);
 			}
-		
-			
 			i++;
-			
+	
 		}
+
+		
 	}
+
+
 
 }
