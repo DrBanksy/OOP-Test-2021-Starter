@@ -92,13 +92,22 @@ public class ScoreDisplay extends PApplet
 			
 			// equally spaced
 			int pos = allNotes.indexOf(character);
-			float gap = (float)12.5 * pos;
+			float gap = (float)12.3 * pos;
 
 			// draw the circles
 			noStroke();
 			circle(x, (height/2+45) - gap, 20);
 			stroke(0);
 
+			
+			line(x+5, (height/2+45) - gap, x+5,((height/2+45) - gap) - 50);
+
+			// crotchet (2) as no tick
+			if(n.getDuration() == 1) {
+				line( x+5, ((height/2+45) - gap) - 50, x+15, ((height/2+45) - gap) -40);
+			}
+		
+			
 			i++;
 			
 		}
