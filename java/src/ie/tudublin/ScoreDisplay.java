@@ -1,7 +1,6 @@
 package ie.tudublin;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 import processing.core.PApplet;
 
@@ -56,7 +55,7 @@ public class ScoreDisplay extends PApplet
 	{
 		colorMode(HSB);
 		loadScore();
-		printScores();		  
+		printScores();	
 	}
 
 	public void draw()
