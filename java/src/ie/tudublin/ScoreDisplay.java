@@ -53,12 +53,15 @@ public class ScoreDisplay extends PApplet
 		colorMode(HSB);
 		loadScore();
 		printScores();
+
 	}
 
 	public void draw()
 	{
 		background(255);
-		drawLines();		
+		drawLines();	
+		drawNotes();	
+
 	}
 
 	private void drawLines() {
@@ -73,6 +76,17 @@ public class ScoreDisplay extends PApplet
 
 	void drawNotes()
 	{
+		fill(0);
+		textAlign(CENTER, CENTER);
+		textSize(16);
+		float border = width * 0.1f;
+		int i = 0;
+		for(Note n : notes) {
+			float x = map(i, 0, score.length(), border+10, width-border);
+			text(n.getNote(), x, height/2 - 80);
+			i++;
+		}
+
 
 	}
 }
