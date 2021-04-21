@@ -5,6 +5,7 @@ import java.util.Hashtable;
 
 import processing.core.PApplet;
 
+
 public class ScoreDisplay extends PApplet
 {
 	ArrayList<Note> notes = new ArrayList<Note>();
@@ -55,7 +56,7 @@ public class ScoreDisplay extends PApplet
 	{
 		colorMode(HSB);
 		loadScore();
-		printScores();
+		printScores();		  
 	}
 
 	public void draw()
@@ -63,8 +64,6 @@ public class ScoreDisplay extends PApplet
 		background(255);
 		drawLines();	
 		drawNotes();	
-
-
 	}
 
 	private void drawLines() {
@@ -87,8 +86,8 @@ public class ScoreDisplay extends PApplet
 		int size= 20;
 		for(Note n : notes) {
 
-			
-			char character = n.getNote();
+			// getting the note 
+			char note = n.getNote();
 			float x = map(i, 0, notes.size(), border+10, width-border);
 
 			// checking if mouse if hovering on the same x axis as a note
@@ -99,15 +98,15 @@ public class ScoreDisplay extends PApplet
 				fill(0);
 				stroke(0);
 			}
+
 			text(n.getNote(), x, height/2 - 120);
 
 			// equally spaced
-			int pos = allNotes.indexOf(character);
+			int pos = allNotes.indexOf(note);
 			float gap = (float)12.3 * pos;
 
-			// draw the circles
+			// draw the circles and lines
 			circle(x, (height/2+45) - gap, size);
-			
 			line(x+5, (height/2+45) - gap, x+5,((height/2+45) - gap) - 50);
 
 			// crotchet (2) as no tick
@@ -115,12 +114,6 @@ public class ScoreDisplay extends PApplet
 				line( x+5, ((height/2+45) - gap) - 50, x+15, ((height/2+45) - gap) -40);
 			}
 			i++;
-	
 		}
-
-		
 	}
-
-
-
 }
