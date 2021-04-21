@@ -9,17 +9,19 @@ public class ScoreDisplay extends PApplet
 {
 	ArrayList<Note> notes = new ArrayList<Note>();
 
-	// String score = "DEFGABcd";
+	String score = "DEFGABcd";
 	// String score = "D2E2F2G2A2B2c2d2";
-	String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
+	// String score = "DEF2F2F2EFA2A2B2AFD2E2D2D2D2";
 
 	public void loadScore() {
-		for(int i = 0; i < score.length()-1; i++) {
+		for(int i = 0; i < score.length(); i++) {
 			int duration = 1;
-			if(Character.isDigit(score.charAt(i + 1))) {
-				duration = score.charAt(i + 1) - '0';
-				
-			} 
+			if( i < score.length()-1) {
+				if(Character.isDigit(score.charAt(i + 1))) {
+					duration = score.charAt(i + 1) - '0';
+				} 
+			}
+
 			if(!Character.isDigit(score.charAt(i))) {
 				Note note = new Note(score.charAt(i), duration);
 				notes.add(note);
@@ -82,8 +84,17 @@ public class ScoreDisplay extends PApplet
 		float border = width * 0.1f;
 		int i = 0;
 		for(Note n : notes) {
+
+			// write the letter
 			float x = map(i, 0, score.length(), border+10, width-border);
-			text(n.getNote(), x, height/2 - 80);
+			float y = map (i, 0, 6, height/2 + 50, height/2 - 50  );
+			text(n.getNote(), x, height/2 - 90);
+
+
+			//draw circle for each note
+			noStroke();
+			circle(x, y, 10);
+
 			i++;
 		}
 
