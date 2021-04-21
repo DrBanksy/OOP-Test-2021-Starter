@@ -24,7 +24,6 @@ public class ScoreDisplay extends PApplet
 				Note note = new Note(score.charAt(i), duration);
 				notes.add(note);
 			}
-
 		}
 	}
 
@@ -51,6 +50,7 @@ public class ScoreDisplay extends PApplet
 
 	public void setup() 
 	{
+		colorMode(HSB);
 		loadScore();
 		printScores();
 	}
@@ -58,10 +58,21 @@ public class ScoreDisplay extends PApplet
 	public void draw()
 	{
 		background(255);
-		
+		drawLines();		
+	}
+
+	private void drawLines() {
+		float border = width * 0.1f;
+		stroke(0);
+		strokeWeight(2);
+		for(int i = 0; i < 6 ; i++) {
+			float y = map (i, 0, 6, height/2 - 50,  height/2 + 50);
+			line(border, y, width-border, y);
+		}
 	}
 
 	void drawNotes()
 	{
+
 	}
 }
