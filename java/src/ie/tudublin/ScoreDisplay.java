@@ -3,12 +3,19 @@ package ie.tudublin;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import ddf.minim.Minim;
+import ddf.minim.AudioOutput;
+
+
 
 
 public class ScoreDisplay extends PApplet
 {
+	Minim minim;
+	AudioOutput out;
 	ArrayList<Note> notes = new ArrayList<Note>();
 	String allNotes = "DEFGABcd";
+
 
 	// String score = "DEFGABcd";
 	// String score = "D2E2F2G2A2B2c2d2";
@@ -53,9 +60,16 @@ public class ScoreDisplay extends PApplet
 
 	public void setup() 
 	{
+		minim = new Minim(this);
+		out = minim.getLineOut(); out.setTempo(80);
 		colorMode(HSB);
 		loadScore();
 		printScores();	
+		// DEF2F2F2EFA2A2B2AFD2E2D2D2D2
+		out.playNote( 2.0f, 2.9f, "D" );
+		out.playNote( 2.9f, 3.9f, "E" );
+		out.playNote( 3.9f, 4.9f, "F" );
+		out.playNote( 4.9f, 5.9f, "F" );
 	}
 
 	public void draw()
